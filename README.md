@@ -26,3 +26,5 @@ quality-engineering-labs/
 - 不提交账号凭据、个人隐私、未脱敏日志和写作草稿。
 
 ## 文章链接
+
+- [拆解18个27届测试岗位：测试开发需要哪些能力？](https://blog.csdn.net/m0_53047391/article/details/163417663)

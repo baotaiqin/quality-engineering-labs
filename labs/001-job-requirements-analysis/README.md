@@ -66,4 +66,4 @@ python -m unittest discover -s tests -v
 
 ## 相关文章
 
-CSDN 文章待发布，发布后补充链接。
+- [拆解18个27届测试岗位：测试开发需要哪些能力？](https://blog.csdn.net/m0_53047391/article/details/163417663)
