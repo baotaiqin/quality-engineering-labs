@@ -1,97 +1,69 @@
-# 2027 Graduate QA Job Requirements Analysis
+# 27届测试岗位要求分析
 
-This experiment turns a manually curated set of public 2027 graduate job posts into a small, auditable dataset. It compares job-level frequency with company-level frequency so that companies publishing several specialized roles do not dominate the result.
+## 项目说明
 
-## Scope
+这个实验整理了 18 个明确面向 27 届的测试相关岗位，并使用 Python 统计岗位描述中反复出现的能力要求。
 
-- 18 QA-related positions
-- 13 companies or institutions
-- Access date: 2026-08-02
-- Tracks: software testing, test development, AI software quality, algorithm testing, and model evaluation
+统计同时采用岗位口径和公司去重口径，避免同一家公司发布多个岗位后被重复放大。样本不是随机抽样，结果只用于描述本次整理的岗位。
 
-This is a purposive sample, not a random survey of the entire recruitment market. The results describe only the selected posts.
+## 数据范围
 
-## Repository layout
+- 岗位数：18
+- 企业或机构数：13
+- 访问日期：2026-08-02
+- 岗位方向：软件测试、测试开发、AI 软件质量、算法测试和模型评测
+
+## 目录结构
 
 ```text
 .
-├─ data/
-│  └─ job_samples.csv
-├─ src/
-│  ├─ analyze_jobs.py
-│  └─ generate_charts.py
-├─ tests/
-│  └─ test_analyze_jobs.py
-├─ outputs/
-│  ├─ capability_prevalence.csv
-│  ├─ skill_frequency.csv
-│  ├─ track_distribution.csv
-│  ├─ source_distribution.csv
-│  ├─ summary.json
-│  └─ charts/
-└─ requirements.txt
+├─ data/                 # 结构化岗位样本
+├─ src/                  # 分析和绘图代码
+├─ tests/                # 自动化测试
+├─ outputs/              # CSV、JSON 和图表结果
+├─ requirements.txt
+└─ README.md
 ```
 
-## Method
+## 运行方法
 
-1. Keep positions that explicitly target 2027 graduates or interns and are directly related to testing or model evaluation.
-2. Manually map job descriptions to canonical tokens for programming languages, testing foundations, automation tools, engineering systems, AI quality, and quality activities.
-3. Validate required fields and duplicate IDs.
-4. Remove exact company/title/URL duplicates.
-5. Calculate prevalence by job and by distinct company.
-6. Export CSV/JSON results and reproducible PNG charts.
-
-Manual coding is used because job descriptions express similar requirements with different wording. The raw descriptions are not republished; the dataset contains short summaries, canonical tags, source links, and access dates.
-
-## Run
-
-Python 3.10 or newer is recommended.
+建议使用 Python 3.10 及以上版本。
 
 ```bash
 python -m pip install -r requirements.txt
-
-python src/analyze_jobs.py \
-  --input data/job_samples.csv \
-  --output-dir outputs
-
-python src/generate_charts.py \
-  --analysis-dir outputs \
-  --output-dir outputs/charts
+python src/analyze_jobs.py --input data/job_samples.csv --output-dir outputs
+python src/generate_charts.py --analysis-dir outputs --output-dir outputs/charts
 ```
 
-On Windows PowerShell, replace the line continuation character as needed or run each command on one line.
-
-## Test
+## 运行测试
 
 ```bash
 python -m unittest discover -s tests -v
 ```
 
-The tests cover token parsing, duplicate handling, company-level weighting, AI capability classification, dataset integration, and chart generation.
+测试覆盖空值处理、重复岗位、公司去重、AI 能力分类、完整数据分析和图表生成。
 
-## Main observations
+## 主要结果
 
-| Capability group | Job-level | Company-level |
+| 能力类别 | 岗位口径 | 公司口径 |
 |---|---:|---:|
-| Testing foundations and test design | 94.4% | 92.3% |
-| Programming languages | 88.9% | 92.3% |
-| Automation and tool development | 88.9% | 92.3% |
-| Performance, stability, and diagnosis | 88.9% | 84.6% |
-| Computer and system fundamentals | 66.7% | 76.9% |
-| AI and model evaluation | 66.7% | 61.5% |
-| Engineering and infrastructure | 22.2% | 23.1% |
+| 测试基础与用例设计 | 94.4% | 92.3% |
+| 编程语言 | 88.9% | 92.3% |
+| 自动化与工具开发 | 88.9% | 92.3% |
+| 性能、稳定性与问题定位 | 88.9% | 84.6% |
+| 计算机与系统基础 | 66.7% | 76.9% |
+| AI 与模型评测 | 66.7% | 61.5% |
+| 工程化与基础设施 | 22.2% | 23.1% |
 
-These numbers represent explicit mentions in this sample. A missing token does not prove that a skill is unimportant, and a mentioned skill is not necessarily a strict screening threshold.
+这些数字表示能力在本次样本中被明确写出的比例。岗位没有写出某项能力，不代表实际工作不需要；写在招聘要求中，也不一定都是硬性门槛。
 
-## Limitations
+## 局限
 
-- 12 of 18 posts came from Nowcoder, so platform selection bias is substantial.
-- Alibaba and ByteDance published multiple specialized positions; company-level aggregation reduces but does not eliminate that bias.
-- Some community or aggregator pages may lag behind the original company page.
-- Job descriptions mix required and preferred qualifications.
-- The taxonomy is manually coded and can contain judgment errors.
-- Closed positions remain useful as requirement snapshots but should not be treated as active application links.
+- 样本数量有限，不能代表完整招聘市场。
+- 样本来源分布不均，招聘平台岗位占比较高。
+- 同一岗位描述可能同时包含硬性要求和加分项。
+- 能力标签由人工整理，仍可能存在判断偏差。
 
-## Related article
+## 相关文章
 
-CSDN link: pending review and publication.
+CSDN 文章待发布，发布后补充链接。

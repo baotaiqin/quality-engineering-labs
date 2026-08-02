@@ -1,36 +1,27 @@
-# Quality Engineering Labs
+# 质量工程实践
 
-A collection of small, reproducible experiments about software testing, test development, and AI quality engineering.
+这个仓库记录软件测试、测试开发和 AI 测试方向的小型实践。每个实验尽量保留可运行代码、自动化测试、必要数据和结果说明。
 
-The repository focuses on runnable code, automated tests, structured data, and explicit limitations. Each lab is designed to be independently understandable and reproducible.
+## 实验列表
 
-## Labs
+| 编号 | 内容 | 主要技术 | 状态 |
+|---|---|---|---|
+| 001 | [27届测试岗位要求分析](labs/001-job-requirements-analysis/) | Python、Pillow、unittest | 已完成 |
 
-| ID | Area | Experiment | Stack | Status |
-|---|---|---|---|---|
-| 001 | Job requirements analysis | [2027 Graduate QA Job Requirements Analysis](labs/001-job-requirements-analysis/) | Python, Pillow, unittest | Complete |
-
-## Repository structure
+## 目录结构
 
 ```text
 quality-engineering-labs/
-├─ labs/
-│  └─ 001-job-requirements-analysis/
-├─ .github/workflows/
+├─ labs/                 # 每篇博客对应的实验
+├─ .github/workflows/    # 自动化检查
 └─ README.md
 ```
 
-## Run a lab
+每个实验目录都有单独的说明文档，可以独立安装依赖、运行代码和执行测试。
 
-Each lab contains its own `README.md`, dependencies, source code, data, tests, generated results, and limitations. Follow the instructions inside the corresponding lab directory.
+## 说明
 
-## Quality principles
-
-- Keep experiments reproducible and small enough to review.
-- Include automated tests for parsing, aggregation, and important edge cases.
-- Separate observations from conclusions and state sampling limitations.
-- Never commit credentials, private logs, or unapproved personal data.
-
-## Article links
-
-The related CSDN article link will be added after publication.
+- 小型实验统一放在 `labs/` 下，完整项目会单独建仓库。
+- 数据和结论只针对实验中说明的范围，不做过度外推。
+- 不提交账号凭据、个人隐私、未脱敏日志和写作草稿。
+- 对应的 CSDN 文章发布后，会补充文章链接。
