@@ -7,12 +7,13 @@
 | 编号 | 内容 | 主要技术 | 状态 |
 |---|---|---|---|
 | 001 | [27届测试岗位要求分析](labs/001-job-requirements-analysis/) | Python、Pillow、unittest | 已完成 |
+| 002 | [登录功能测试设计](labs/002-login-test-design/) | Python、CSV、Pillow、unittest | 已完成 |
 
 ## 目录结构
 
 ```text
 quality-engineering-labs/
-├─ labs/                 # 每篇博客对应的实验
+├─ labs/                 # 按主题组织的小型实验
 ├─ .github/workflows/    # 自动化检查
 └─ README.md
 ```

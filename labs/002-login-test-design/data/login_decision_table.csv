@@ -1,0 +1,7 @@
+rule_id,user_exists,password_correct,account_active,locked,expected
+R1,Y,Y,Y,N,登录成功并创建新会话
+R2,Y,N,Y,N,统一失败提示并累计失败次数
+R3,N,-,-,N,统一失败提示且不暴露账号状态
+R4,Y,Y,N,N,统一失败提示且不创建会话
+R5,Y,Y,Y,Y,拒绝登录并提示稍后重试
+R6,Y,N,Y,Y,拒绝登录并保持锁定状态
