@@ -58,3 +58,5 @@ python -m unittest discover -s tests -v
 - 短信验证码、第三方登录、MFA和跨地域容灾不在本次范围内。
 
 ## 相关文章
+
+- [从一个登录功能开始：需求、状态和风险如何落到测试用例](https://blog.csdn.net/m0_53047391/article/details/163514975)

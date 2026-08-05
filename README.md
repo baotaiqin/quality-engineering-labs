@@ -29,3 +29,4 @@ quality-engineering-labs/
 ## 文章链接
 
 - [拆解18个27届测试岗位：测试开发需要哪些能力？](https://blog.csdn.net/m0_53047391/article/details/163417663)
+- [从一个登录功能开始：需求、状态和风险如何落到测试用例](https://blog.csdn.net/m0_53047391/article/details/163514975)
