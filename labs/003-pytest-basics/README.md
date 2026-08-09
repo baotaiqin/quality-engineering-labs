@@ -61,3 +61,5 @@ Windows：
 - 当前代码只验证运费计算函数，不包含数据库、接口或页面测试。
 
 ## 相关文章
+
+- [Pytest入门实战：从第一条断言到参数化与HTML报告](https://blog.csdn.net/m0_53047391/article/details/163617989)
