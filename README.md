@@ -9,6 +9,7 @@
 | 001 | [27届测试岗位要求分析](labs/001-job-requirements-analysis/) | Python、Pillow、unittest | 已完成 |
 | 002 | [登录功能测试设计](labs/002-login-test-design/) | Python、CSV、Pillow、unittest | 已完成 |
 | 003 | [Pytest运费规则测试](labs/003-pytest-basics/) | Python、pytest、pytest-html | 已完成 |
+| 004 | [Pytest fixture登录状态管理](labs/004-pytest-fixtures/) | Python、pytest | 已完成 |
 
 ## 目录结构
 
