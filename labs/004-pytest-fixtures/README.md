@@ -69,3 +69,5 @@ Windows：
 当前代码使用内存存储和本地会话对象，重点验证fixture的组织方式。真实接口、数据库或浏览器资源仍需要处理连接失败、并发数据隔离和进程异常退出等情况。
 
 ## 相关文章
+
+- [用登录状态讲清Pytest fixture：依赖、scope与yield](https://blog.csdn.net/m0_53047391/article/details/163735797)

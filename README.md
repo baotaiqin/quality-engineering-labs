@@ -32,3 +32,4 @@ quality-engineering-labs/
 - [拆解18个27届测试岗位：测试开发需要哪些能力？](https://blog.csdn.net/m0_53047391/article/details/163417663)
 - [从一个登录功能开始：需求、状态和风险如何落到测试用例](https://blog.csdn.net/m0_53047391/article/details/163514975)
 - [Pytest入门实战：从第一条断言到参数化与HTML报告](https://blog.csdn.net/m0_53047391/article/details/163617989)
+- [用登录状态讲清Pytest fixture：依赖、scope与yield](https://blog.csdn.net/m0_53047391/article/details/163735797)
