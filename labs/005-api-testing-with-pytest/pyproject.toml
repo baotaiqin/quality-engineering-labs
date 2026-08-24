@@ -1,0 +1,7 @@
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = ["-ra", "--strict-markers", "--import-mode=importlib"]
+markers = [
+    "timeout: validates client timeout behavior against a delayed response",
+]
