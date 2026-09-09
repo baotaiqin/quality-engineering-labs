@@ -1,0 +1,33 @@
+{
+  "info": {
+    "_postman_id": "0880b226-86f5-490a-b1be-a0192f43c001",
+    "name": "Auth API Wrong Expectation",
+    "description": "保留一条错误状态码预期，用于观察Newman失败输出。",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "缺少密码却预期401",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"postman_user\"\n}"
+        },
+        "url": "{{baseUrl}}/api/login"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('状态码为401', () => pm.response.to.have.status(401));"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,235 @@
+{
+  "info": {
+    "_postman_id": "88bc7f5c-606e-473c-95c3-2a46f106c001",
+    "name": "Auth API Regression",
+    "description": "验证账号注册、登录、Bearer Token访问与退出失效。",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "exec": [
+          "if (pm.info.requestName === '01 健康检查') {",
+          "  pm.environment.set('username', `postman_user_${Date.now()}`);",
+          "  pm.environment.unset('accessToken');",
+          "}"
+        ]
+      }
+    }
+  ],
+  "item": [
+    {
+      "name": "01 健康检查",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "{{baseUrl}}/health"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('状态码为200', () => pm.response.to.have.status(200));",
+              "pm.test('服务状态为ok', () => pm.expect(pm.response.json().status).to.eql('ok'));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "02 注册账号",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"{{username}}\",\n  \"password\": \"{{password}}\"\n}"
+        },
+        "url": "{{baseUrl}}/api/users"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('状态码为201', () => pm.response.to.have.status(201));",
+              "pm.test('返回当前用户名', () => pm.expect(pm.response.json().username).to.eql(pm.environment.get('username')));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "03 重复注册",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"{{username}}\",\n  \"password\": \"{{password}}\"\n}"
+        },
+        "url": "{{baseUrl}}/api/users"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('状态码为409', () => pm.response.to.have.status(409));",
+              "pm.test('错误码为USER_EXISTS', () => pm.expect(pm.response.json().code).to.eql('USER_EXISTS'));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "04 缺少密码",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"{{username}}\"\n}"
+        },
+        "url": "{{baseUrl}}/api/login"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('状态码为422', () => pm.response.to.have.status(422));",
+              "pm.test('错误码为VALIDATION_ERROR', () => pm.expect(pm.response.json().code).to.eql('VALIDATION_ERROR'));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "05 错误密码登录",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"{{username}}\",\n  \"password\": \"wrong-pass\"\n}"
+        },
+        "url": "{{baseUrl}}/api/login"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('状态码为401', () => pm.response.to.have.status(401));",
+              "pm.test('响应包含Bearer挑战', () => pm.expect(pm.response.headers.get('WWW-Authenticate')).to.eql('Bearer'));",
+              "pm.test('错误码为INVALID_CREDENTIALS', () => pm.expect(pm.response.json().code).to.eql('INVALID_CREDENTIALS'));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "06 登录成功",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Content-Type", "value": "application/json" }],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"username\": \"{{username}}\",\n  \"password\": \"{{password}}\"\n}"
+        },
+        "url": "{{baseUrl}}/api/login"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const body = pm.response.json();",
+              "pm.test('状态码为200', () => pm.response.to.have.status(200));",
+              "pm.test('返回Bearer Token', () => {",
+              "  pm.expect(body.token_type).to.eql('bearer');",
+              "  pm.expect(body.access_token).to.be.a('string').and.not.empty;",
+              "});",
+              "pm.environment.set('accessToken', body.access_token);"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "07 使用Token读取资料",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+        "url": "{{baseUrl}}/api/profile"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "const body = pm.response.json();",
+              "pm.test('状态码为200', () => pm.response.to.have.status(200));",
+              "pm.test('返回当前用户资料', () => {",
+              "  pm.expect(body.username).to.eql(pm.environment.get('username'));",
+              "  pm.expect(body.status).to.eql('active');",
+              "});"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "08 退出登录",
+      "request": {
+        "method": "POST",
+        "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+        "url": "{{baseUrl}}/api/logout"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('状态码为204', () => pm.response.to.have.status(204));",
+              "pm.test('响应体为空', () => pm.expect(pm.response.text()).to.eql(''));"
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "name": "09 退出后再次访问",
+      "request": {
+        "method": "GET",
+        "header": [{ "key": "Authorization", "value": "Bearer {{accessToken}}" }],
+        "url": "{{baseUrl}}/api/profile"
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "pm.test('状态码为401', () => pm.response.to.have.status(401));",
+              "pm.test('原Token已失效', () => pm.expect(pm.response.json().code).to.eql('TOKEN_INVALID'));",
+              "pm.environment.unset('accessToken');"
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

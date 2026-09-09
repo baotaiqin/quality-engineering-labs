@@ -1,0 +1,9 @@
+{
+  "collection": "auth-regression",
+  "iterations": 1,
+  "requests": 9,
+  "assertions": 19,
+  "failedAssertions": 0,
+  "durationMs": 827,
+  "failures": []
+}

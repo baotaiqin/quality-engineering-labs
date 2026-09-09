@@ -1,0 +1,15 @@
+{
+  "collection": "failure-case",
+  "iterations": 1,
+  "requests": 1,
+  "assertions": 1,
+  "failedAssertions": 1,
+  "durationMs": 144,
+  "failures": [
+    {
+      "request": "缺少密码却预期401",
+      "assertion": "状态码为401",
+      "message": "expected response to have status code 401 but got 422"
+    }
+  ]
+}

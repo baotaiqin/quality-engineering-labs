@@ -1,0 +1,8 @@
+node_modules/
+reports/*.json
+reports/*.xml
+!reports/.gitkeep
+!reports/summary.json
+!reports/failure-summary.json
+.env
+*.log

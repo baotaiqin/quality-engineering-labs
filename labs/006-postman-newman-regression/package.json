@@ -1,0 +1,15 @@
+{
+  "name": "postman-newman-auth-regression",
+  "version": "1.0.0",
+  "private": true,
+  "description": "使用Postman Collection和Newman验证登录接口请求链",
+  "type": "module",
+  "scripts": {
+    "test:api": "node scripts/run-collection.mjs",
+    "test:api:failure": "node scripts/run-collection.mjs --failure",
+    "start": "node server/app.mjs"
+  },
+  "devDependencies": {
+    "newman": "6.2.2"
+  }
+}
