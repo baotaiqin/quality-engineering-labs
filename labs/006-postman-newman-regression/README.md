@@ -81,3 +81,5 @@ Newman 适合运行已有的 Collection v2.1 JSON 文件。Postman 当前推荐�
 本地服务使用内存保存账号和 Token，不包含生产鉴权所需的密码哈希、持久化、Token 签名、过期刷新、限流和审计。
 
 ## 相关文章
+
+- [Postman用例如何持续运行？用Newman打通接口请求链与报告](https://blog.csdn.net/m0_53047391/article/details/164752166)
