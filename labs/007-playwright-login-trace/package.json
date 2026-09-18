@@ -1,0 +1,17 @@
+{
+  "name": "playwright-login-trace",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node server/app.mjs",
+    "test": "playwright test",
+    "test:diagnostic": "playwright test --config=playwright.diagnostic.config.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0",
+    "@types/node": "22.15.30",
+    "typescript": "5.9.3"
+  }
+}

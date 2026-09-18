@@ -12,6 +12,7 @@
 | 004 | [Pytest fixture登录状态管理](labs/004-pytest-fixtures/) | Python、pytest | 已完成 |
 | 005 | [Pytest + Requests登录接口测试](labs/005-api-testing-with-pytest/) | Python、pytest、Requests、FastAPI | 已完成 |
 | 006 | [Postman集合自动化回归](labs/006-postman-newman-regression/) | Postman、Newman、Node.js | 已完成 |
+| 007 | [Playwright登录流程测试](labs/007-playwright-login-trace/) | TypeScript、Playwright Test、Chromium | 已完成 |
 
 ## 目录结构
 

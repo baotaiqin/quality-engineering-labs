@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>账户概览</title>
+  <link rel="stylesheet" href="/app.css">
+</head>
+<body>
+  <main class="dashboard-shell">
+    <header class="dashboard-header">
+      <div class="product-name">工作台</div>
+      <button id="logout" class="secondary">退出登录</button>
+    </header>
+    <section class="dashboard-content">
+      <div class="eyebrow">OVERVIEW</div>
+      <h1 id="welcome">欢迎回来</h1>
+      <p>账户已登录，可以访问受保护的概览页。</p>
+      <div class="status-panel">
+        <span class="status-dot"></span>
+        <span>当前会话有效</span>
+      </div>
+    </section>
+  </main>
+  <script>
+    fetch('/api/session').then(async (response) => {
+      if (!response.ok) {
+        window.location.replace('/login');
+        return;
+      }
+      const body = await response.json();
+      document.querySelector('#welcome').textContent = `欢迎回来，${body.displayName}`;
+    });
+    document.querySelector('#logout').addEventListener('click', async () => {
+      await fetch('/api/session', { method: 'DELETE' });
+      window.location.assign('/login');
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+* { box-sizing: border-box; }
+body { margin: 0; font-family: "Microsoft YaHei UI", "PingFang SC", sans-serif; color: #1f2937; background: #f5f7fa; }
+.page-shell { min-height: 100vh; display: grid; grid-template-columns: 1fr 450px; align-items: center; gap: 90px; max-width: 1180px; padding: 56px 42px; margin: auto; }
+.product-name { color: #2463b5; font-size: 18px; font-weight: 700; letter-spacing: 2px; }
+.intro h1 { margin: 28px 0 12px; font-size: 52px; font-weight: 700; }
+.intro p, .dashboard-content p { color: #64748b; font-size: 20px; }
+.card { padding: 42px; background: white; border: 1px solid #e3e8ef; border-radius: 12px; box-shadow: 0 10px 32px rgba(15,23,42,.06); }
+.eyebrow { font: 700 13px Consolas, monospace; letter-spacing: 2px; color: #64748b; }
+.card h2 { margin: 14px 0 6px; font-size: 28px; }
+.hint { color: #64748b; margin: 0 0 30px; }
+form { display: grid; }
+label { font-size: 15px; font-weight: 600; margin: 14px 0 8px; }
+input { height: 46px; padding: 10px 13px; border: 1px solid #cbd5e1; border-radius: 6px; font-size: 16px; }
+input:focus { outline: 2px solid #93c5fd; border-color: #2463b5; }
+button { height: 47px; margin-top: 27px; color: white; background: #2463b5; border: 0; border-radius: 6px; font-size: 16px; font-weight: 600; cursor: pointer; }
+button:disabled { background: #8baace; cursor: wait; }
+.error { margin: 14px 0 0; color: #b42318; font-size: 14px; }
+.fine-print { margin: 23px 0 0; color: #94a3b8; font-size: 13px; }
+.dashboard-shell { max-width: 1080px; margin: 40px auto; background: white; min-height: 690px; border: 1px solid #e3e8ef; border-radius: 10px; }
+.dashboard-header { display: flex; justify-content: space-between; align-items: center; padding: 16px 34px; border-bottom: 1px solid #e3e8ef; }
+.secondary { background: white; border: 1px solid #cbd5e1; color: #334155; width: 120px; margin: 0; }
+.dashboard-content { padding: 80px 78px; }
+.dashboard-content h1 { font-size: 42px; margin: 18px 0 10px; }
+.status-panel { display: flex; align-items: center; gap: 12px; width: 320px; margin-top: 50px; padding: 22px; background: #f0fdf4; border: 1px solid #bbf7d0; border-radius: 8px; }
+.status-dot { display: inline-block; width: 11px; height: 11px; border-radius: 50%; background: #16a34a; }
+@media (max-width: 800px) { .page-shell { grid-template-columns: 1fr; gap: 30px; } .intro h1 { font-size: 36px; } }

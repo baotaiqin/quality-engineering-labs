@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>账户登录</title>
+  <link rel="stylesheet" href="/app.css">
+</head>
+<body>
+  <main class="page-shell">
+    <section class="intro" aria-label="站点介绍">
+      <div class="product-name">工作台</div>
+      <h1>欢迎回来</h1>
+      <p>登录后查看账户概览。</p>
+    </section>
+    <section class="card" aria-labelledby="login-title">
+      <div class="eyebrow">ACCOUNT</div>
+      <h2 id="login-title">登录账户</h2>
+      <p class="hint">请输入账户信息继续。</p>
+      <form id="login-form">
+        <label for="username">用户名</label>
+        <input id="username" name="username" autocomplete="username" required>
+        <label for="password">密码</label>
+        <input id="password" name="password" type="password" autocomplete="current-password" required>
+        <p id="error" class="error" role="alert" hidden></p>
+        <button type="submit">登录</button>
+      </form>
+      <p class="fine-print">仅本地运行的账户页面</p>
+    </section>
+  </main>
+  <script>
+    const form = document.querySelector('#login-form');
+    const error = document.querySelector('#error');
+    form.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      error.hidden = true;
+      const button = form.querySelector('button');
+      button.disabled = true;
+      button.textContent = '验证中…';
+      try {
+        const response = await fetch('/api/session', {
+          method: 'POST',
+          headers: { 'content-type': 'application/json' },
+          body: JSON.stringify({
+            username: form.elements.namedItem('username').value,
+            password: form.elements.namedItem('password').value,
+          }),
+        });
+        if (response.ok) {
+          window.location.assign('/dashboard');
+          return;
+        }
+        const body = await response.json();
+        error.textContent = body.message ?? '登录失败';
+        error.hidden = false;
+      } catch {
+        error.textContent = '服务暂时不可用';
+        error.hidden = false;
+      } finally {
+        button.disabled = false;
+        button.textContent = '登录';
+      }
+    });
+  </script>
+</body>
+</html>
