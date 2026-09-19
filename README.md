@@ -38,3 +38,4 @@ quality-engineering-labs/
 - [用登录状态讲清Pytest fixture：依赖、scope与yield](https://blog.csdn.net/m0_53047391/article/details/163735797)
 - [登录接口自动化测试：会话、断言、数据隔离与超时](https://blog.csdn.net/m0_53047391/article/details/164036710)
 - [Postman用例如何持续运行？用Newman打通接口请求链与报告](https://blog.csdn.net/m0_53047391/article/details/164752166)
+- [用Playwright跑通登录流程：定位、断言与Trace定位失败](https://blog.csdn.net/m0_53047391/article/details/165897044)

@@ -34,3 +34,7 @@ playwright.diagnostic.config.ts 诊断用例的独立入口
 ```
 
 本地账号 `reader / local-pass-2026` 仅用于这份代码。服务端将会话保存在内存里，未涉及数据库、真实用户或生产鉴权；测试范围也仅限 Chromium。
+
+## 相关文章
+
+[用Playwright跑通登录流程：定位、断言与Trace定位失败](https://blog.csdn.net/m0_53047391/article/details/165897044)
